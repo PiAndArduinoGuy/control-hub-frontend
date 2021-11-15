@@ -11,13 +11,20 @@ import {FormsModule} from '@angular/forms';
 import { OptionsComponent } from './pool-pump-controller/options/options.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { PumpControllerDashboardComponent } from './pool-pump-controller/pump-controller-dashboard/pump-controller-dashboard.component';
+import { SecurityControllerComponent } from './security-controller/security-controller.component';
+import { SecurityBreachedHandlerComponent } from './security-controller/security-breached-handler/security-breached-handler.component';
+import { SecurityDashboardComponent } from './security-controller/security-dashboard/security-dashboard.component';
+import { SecurityOptionsComponent } from './security-controller/security-options/security-options.component';
 
 const routes: Route[] = [
   {path: 'control-hub-frontend', component: HomeComponent},
   {path: 'pool-pump-controller', component: PoolPumpControllerComponent, children: [
       {path: '', component: OptionsComponent},
       {path: 'edit-configuration', component: ConfigurationEditComponent}
-    ]}
+    ]},
+  {path: 'security-controller', component: SecurityControllerComponent, children: [
+    {path: '', component: SecurityOptionsComponent},
+  ]}
 ];
 
 @NgModule({
@@ -29,6 +36,9 @@ const routes: Route[] = [
     ConfigurationEditComponent,
     OptionsComponent,
     PumpControllerDashboardComponent,
+    SecurityControllerComponent,
+    SecurityBreachedHandlerComponent,
+    SecurityDashboardComponent
   ],
   imports: [
     BrowserModule,

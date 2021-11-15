@@ -1,0 +1,17 @@
+<p *ngIf="!securityBreached; else breached"class="alert alert-success">
+  Safe
+</p>
+<ng-template #breached>
+  <p class="alert alert-danger">
+    Breached
+  </p>
+</ng-template>
+
+<p *ngIf="!armed; else disarmed"class="alert alert-warning">
+  Armed
+</p>
+<ng-template #disarmed>
+  <p class="alert alert-warn">
+    Disarmed
+  </p>
+</ng-template>
