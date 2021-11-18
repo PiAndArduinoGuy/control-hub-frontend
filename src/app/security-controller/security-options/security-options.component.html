@@ -17,7 +17,15 @@
 <div class="row">
   <div class="col-12">
     <div class="d-flex justify-content-center">
-      <a class="btn btn-primary" (click)="viewBreachImage()">View Breach Image</a>
+      <a class="btn btn-primary" (click)="viewAnnotatedImage()">View Annotated Image</a>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-12">
+    <div class="d-flex justify-content-center">
+      <img [src]="base64JpegEncodedImage">
     </div>
   </div>
 </div>

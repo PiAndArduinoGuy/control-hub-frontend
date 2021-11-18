@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SecurityMicroserviceBackendRequestsService } from '../securuty-micro-service-backend-requests.service';
+
 
 @Component({
   selector: 'app-security-options',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SecurityOptionsComponent implements OnInit {
 
-  constructor() { }
+  base64JpegEncodedImage = null;
+
+  constructor(private securityMicroserviceBackendRequestsService: SecurityMicroserviceBackendRequestsService) { }
 
   ngOnInit(): void {
   }
@@ -16,8 +20,13 @@ export class SecurityOptionsComponent implements OnInit {
     console.log('Send request to arm security.')
   }
 
-  viewBreachImage() {
-    console.log('Send request to get annotated image here. Maybe rather use a new component that only holds an image and when this button is clicked take the user to this new component.')
+  viewAnnotatedImage() {
+    this.securityMicroserviceBackendRequestsService.getBase64EncodedImage().subscribe(
+      response => {
+        console.log('Received new annotated image.')
+        this.base64JpegEncodedImage = 'data:image/jpeg;base64,' + response
+      }
+    );
   }
 
   silenceAlarm() {
