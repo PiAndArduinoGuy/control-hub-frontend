@@ -9,7 +9,7 @@ import { SecurityMicroserviceBackendRequestsService } from '../securuty-micro-se
 })
 export class SecurityOptionsComponent implements OnInit {
 
-  base64JpegEncodedImage = null;
+  base64JpegEncodedImage = null
 
   constructor(private securityMicroserviceBackendRequestsService: SecurityMicroserviceBackendRequestsService) { }
 
