@@ -1,30 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { SecurityMicroserviceBackendRequestsService } from '../securuty-micro-service-backend-requests.service';
-import { SecurityConfig } from '../security-config.model';
-import { SecurityStatus } from '../security-status.enum';
-import { SecurityState } from '../security-state.enum';
+import {Component, Input, OnInit} from '@angular/core';
+import {SecurityMicroserviceBackendRequestsService} from '../securuty-micro-service-backend-requests.service';
 
 @Component({
   selector: 'app-security-dashboard',
   templateUrl: './security-dashboard.component.html',
   styleUrls: ['./security-dashboard.component.scss']
 })
-export class SecurityDashboardComponent implements OnInit { 
-  securityStatus = null
-  securityState = null
+export class SecurityDashboardComponent implements OnInit {
+  @Input() securityStatus = null;
+  @Input() securityState = null;
 
-  constructor(private securityMicroserviceBackendRequestsService: SecurityMicroserviceBackendRequestsService) { }
+  constructor() {
+  }
 
   ngOnInit(): void {
-    this.securityMicroserviceBackendRequestsService.getSecurityConfig().subscribe(
-      (securityConfig)  => {
-        console.log('Received security config.')
-        this.securityState = securityConfig.securityState
-        console.log('Security state: ' + this.securityState)
-        this.securityStatus = securityConfig.securityStatus
-        console.log('Security status: ' + this.securityStatus)
-      }
-    )
+  }
+
+  onAlarmSilenced(securityConfig: {securityState: string, securityStatus: string}) {
+    console.log('The alarm was silenced, I know about it and I am the dashboard, it was ' + securityConfig);
   }
 
 }

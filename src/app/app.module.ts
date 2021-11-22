@@ -14,7 +14,7 @@ import { PumpControllerDashboardComponent } from './pool-pump-controller/pump-co
 import { SecurityControllerComponent } from './security-controller/security-controller.component';
 import { SecurityBreachedHandlerComponent } from './security-controller/security-breached-handler/security-breached-handler.component';
 import { SecurityDashboardComponent } from './security-controller/security-dashboard/security-dashboard.component';
-import { SecurityOptionsComponent } from './security-controller/security-options/security-options.component';
+import { SecurityControlsComponent } from './security-controller/security-controls/security-controls.component';
 
 const routes: Route[] = [
   {path: 'control-hub-frontend', component: HomeComponent},
@@ -22,9 +22,7 @@ const routes: Route[] = [
       {path: '', component: OptionsComponent},
       {path: 'edit-configuration', component: ConfigurationEditComponent}
     ]},
-  {path: 'security-controller', component: SecurityControllerComponent, children: [
-    {path: '', component: SecurityOptionsComponent},
-  ]}
+  {path: 'security-controller', component: SecurityControllerComponent}
 ];
 
 @NgModule({
@@ -38,7 +36,8 @@ const routes: Route[] = [
     PumpControllerDashboardComponent,
     SecurityControllerComponent,
     SecurityBreachedHandlerComponent,
-    SecurityDashboardComponent
+    SecurityDashboardComponent,
+    SecurityControlsComponent
   ],
   imports: [
     BrowserModule,

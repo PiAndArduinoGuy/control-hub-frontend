@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SecurityMicroserviceBackendRequestsService} from './securuty-micro-service-backend-requests.service';
 
 @Component({
   selector: 'app-security-controller',
@@ -6,15 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./security-controller.component.scss']
 })
 export class SecurityControllerComponent implements OnInit {
-  securityBreached = false
+  securityBreached = false;
+  securityConfig: { securityState: string, securityStatus: string };
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private securityMicroserviceBackendRequestsService: SecurityMicroserviceBackendRequestsService) {
   }
 
-  armSecurity() {
-    console.log("Arm security call here.")
+  ngOnInit(): void {
+    this.securityMicroserviceBackendRequestsService.getSecurityConfig().subscribe(
+      (securityConfig) => {
+        console.log('Received security config.' + securityConfig);
+        this.securityConfig = securityConfig;
+      }
+    );
+  }
+
+  onSecurityArmed(securityConfig: { securityState: string, securityStatus: string }) {
+    console.log('Security was armed. Will update security-dashboard component. The security config is not set to - securityState: ' + securityConfig.securityState + ' securityStatus: ' + securityConfig.securityStatus);
+    this.securityConfig = securityConfig;
+  }
+
+  onAlarmSilenced(securityConfig: { securityState: string, securityStatus: string }) {
+    this.securityConfig = securityConfig;
   }
 
 }
