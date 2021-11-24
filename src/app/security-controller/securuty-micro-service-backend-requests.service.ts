@@ -18,11 +18,11 @@ export class SecurityMicroserviceBackendRequestsService {
   }
 
   silenceAlarm() {
-    return this.httpClient.post<{ securityState: string, securityStatus: string }>(this.baseUrl + '/silence-alarm', null);
+    return this.httpClient.put<{ securityState: string, securityStatus: string }>(this.baseUrl + '/silence-alarm', null);
   }
 
   armAlarm() {
-    return this.httpClient.post<{ securityState: string, securityStatus: string }>(this.baseUrl + '/arm-alarm', null);
+    return this.httpClient.put<{ securityState: string, securityStatus: string }>(this.baseUrl + '/arm-alarm', null);
   }
 
 }

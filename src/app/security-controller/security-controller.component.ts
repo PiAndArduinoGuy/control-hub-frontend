@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SecurityMicroserviceBackendRequestsService} from './securuty-micro-service-backend-requests.service';
+import {interval} from 'rxjs';
 
 @Component({
   selector: 'app-security-controller',
@@ -14,6 +15,14 @@ export class SecurityControllerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getLatestSecurityConfig();
+    interval(5000).subscribe(() => {
+      console.log('Performing check for latest security config');
+      this.getLatestSecurityConfig();
+    });
+  }
+
+  getLatestSecurityConfig() {
     this.securityMicroserviceBackendRequestsService.getSecurityConfig().subscribe(
       (securityConfig) => {
         console.log('Received security config.' + securityConfig);
