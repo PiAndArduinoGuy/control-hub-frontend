@@ -40,10 +40,11 @@ export class SecurityControlsComponent implements OnInit {
       response => {
         this.zalandoProblem = null;
         console.log('Received new annotated image.');
-        this.base64JpegEncodedImage = 'data:image/jpeg;base64,' + response;
+        this.base64JpegEncodedImage = 'data:image/jpeg;base64,' + response.base64EncodedImage;
       },
       error => {
         this.zalandoProblem = error.error;
+        console.log(error);
         console.log(this.zalandoProblem);
       }
     );

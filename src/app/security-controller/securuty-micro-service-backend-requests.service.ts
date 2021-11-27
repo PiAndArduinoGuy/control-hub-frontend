@@ -10,7 +10,7 @@ export class SecurityMicroserviceBackendRequestsService {
   }
 
   getBase64EncodedImage() {
-    return this.httpClient.get(this.baseUrl + '/annotated-image', {responseType: 'text'});
+    return this.httpClient.get<{ base64EncodedImage: string }>(this.baseUrl + '/annotated-image');
   }
 
   getSecurityConfig() {
