@@ -10,9 +10,10 @@ import {SecurityMicroserviceBackendRequestsService} from '../securuty-micro-serv
 export class SecurityControlsComponent implements OnInit {
 
   base64JpegEncodedImage = null;
+  zalandoProblem: { title: string, status: number, detail: string } = null;
 
   @Output() securityArmed = new EventEmitter<{ securityState: string, securityStatus: string }>();
-  @Output() securitySilenced = new EventEmitter<{securityState: string, securityStatus: string}>();
+  @Output() securitySilenced = new EventEmitter<{ securityState: string, securityStatus: string }>();
 
   constructor(private securityMicroserviceBackendRequestsService: SecurityMicroserviceBackendRequestsService) {
   }
@@ -23,8 +24,13 @@ export class SecurityControlsComponent implements OnInit {
   armSecurity() {
     this.securityMicroserviceBackendRequestsService.armAlarm().subscribe(
       response => {
+        this.zalandoProblem = null;
         console.log('Alarm armed, received updated security config.');
         this.securityArmed.emit(response);
+      },
+      error => {
+        this.zalandoProblem = error.error;
+        console.log(this.zalandoProblem);
       }
     );
   }
@@ -32,8 +38,13 @@ export class SecurityControlsComponent implements OnInit {
   viewAnnotatedImage() {
     this.securityMicroserviceBackendRequestsService.getBase64EncodedImage().subscribe(
       response => {
+        this.zalandoProblem = null;
         console.log('Received new annotated image.');
         this.base64JpegEncodedImage = 'data:image/jpeg;base64,' + response;
+      },
+      error => {
+        this.zalandoProblem = error.error;
+        console.log(this.zalandoProblem);
       }
     );
   }
@@ -41,8 +52,13 @@ export class SecurityControlsComponent implements OnInit {
   silenceAlarm() {
     this.securityMicroserviceBackendRequestsService.silenceAlarm().subscribe(
       response => {
+        this.zalandoProblem = null;
         console.log('Alarm silenced, received updated security config.');
         this.securitySilenced.emit(response);
+      },
+      error => {
+        this.zalandoProblem = error.error;
+        console.log(this.zalandoProblem);
       }
     );
   }

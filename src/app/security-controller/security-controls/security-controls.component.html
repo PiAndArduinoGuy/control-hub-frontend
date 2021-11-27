@@ -29,3 +29,13 @@
     </div>
   </div>
 </div>
+<div class="row" *ngIf="zalandoProblem !=null">
+  <div class="col-12">
+    <div class="d-flex justify-content-center">
+      <div class="alert alert-light">
+        <h1>An error occurred.</h1>
+        <p> {{zalandoProblem.detail}} </p>
+      </div>
+    </div>
+  </div>
+</div>
