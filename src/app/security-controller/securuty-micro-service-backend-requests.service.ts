@@ -25,4 +25,8 @@ export class SecurityMicroserviceBackendRequestsService {
     return this.httpClient.put<{ securityState: string, securityStatus: string }>(this.baseUrl + '/arm-alarm', null);
   }
 
+  disarmAlarm() {
+    return this.httpClient.put<{ securityState: string, securityStatus: string }>(this.baseUrl + '/disarm-alarm', null);
+  }
+
 }

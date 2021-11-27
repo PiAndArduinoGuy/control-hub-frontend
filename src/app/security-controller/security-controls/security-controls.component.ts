@@ -21,7 +21,7 @@ export class SecurityControlsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  armSecurity() {
+  armAlarm() {
     this.securityMicroserviceBackendRequestsService.armAlarm().subscribe(
       response => {
         this.zalandoProblem = null;
@@ -64,4 +64,17 @@ export class SecurityControlsComponent implements OnInit {
     );
   }
 
+  disarmAlarm() {
+    this.securityMicroserviceBackendRequestsService.disarmAlarm().subscribe(
+      response => {
+        this.zalandoProblem = null;
+        console.log('Alarm disarmed, received updated security config.');
+        this.securitySilenced.emit(response);
+      },
+      error => {
+        this.zalandoProblem = error.error;
+        console.log(this.zalandoProblem);
+      }
+    );
+  }
 }
