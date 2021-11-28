@@ -22,9 +22,9 @@ export class SecurityControlsComponent implements OnInit {
   }
 
   armAlarm() {
+    this.clearPreviousOutput();
     this.securityMicroserviceBackendRequestsService.armAlarm().subscribe(
       response => {
-        this.zalandoProblem = null;
         console.log('Alarm armed, received updated security config.');
         this.securityArmed.emit(response);
       },
@@ -36,9 +36,9 @@ export class SecurityControlsComponent implements OnInit {
   }
 
   viewAnnotatedImage() {
+    this.clearPreviousOutput();
     this.securityMicroserviceBackendRequestsService.getBase64EncodedImage().subscribe(
       response => {
-        this.zalandoProblem = null;
         console.log('Received new annotated image.');
         this.base64JpegEncodedImage = 'data:image/jpeg;base64,' + response.base64EncodedImage;
       },
@@ -51,9 +51,9 @@ export class SecurityControlsComponent implements OnInit {
   }
 
   silenceAlarm() {
+    this.clearPreviousOutput();
     this.securityMicroserviceBackendRequestsService.silenceAlarm().subscribe(
       response => {
-        this.zalandoProblem = null;
         console.log('Alarm silenced, received updated security config.');
         this.securitySilenced.emit(response);
       },
@@ -65,9 +65,9 @@ export class SecurityControlsComponent implements OnInit {
   }
 
   disarmAlarm() {
+    this.clearPreviousOutput();
     this.securityMicroserviceBackendRequestsService.disarmAlarm().subscribe(
       response => {
-        this.zalandoProblem = null;
         console.log('Alarm disarmed, received updated security config.');
         this.securitySilenced.emit(response);
       },
@@ -76,5 +76,18 @@ export class SecurityControlsComponent implements OnInit {
         console.log(this.zalandoProblem);
       }
     );
+  }
+
+  clearPreviousOutput() {
+    this.clearBase64JpegEncodedImage();
+    this.clearZalandoProblem();
+  }
+
+  clearBase64JpegEncodedImage() {
+    this.base64JpegEncodedImage = null;
+  }
+
+  clearZalandoProblem() {
+    this.zalandoProblem = null;
   }
 }
