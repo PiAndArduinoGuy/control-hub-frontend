@@ -5,15 +5,16 @@ import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {HeaderComponent} from './header/header.component';
 import {Route, RouterModule} from '@angular/router';
-import {PoolPumpControllerComponent} from './pool-pump-controller/pool-pump-controller.component';
-import {ConfigurationEditComponent} from './pool-pump-controller/configuration-edit/configuration-edit.component';
+import { PoolPumpControllerComponent } from './pool-pump-controller/pool-pump-controller.component';
+import { ConfigurationEditComponent } from './pool-pump-controller/configuration-edit/configuration-edit.component';
 import {FormsModule} from '@angular/forms';
-import {OptionsComponent} from './pool-pump-controller/options/options.component';
-import {HttpClientModule} from '@angular/common/http';
-import {PumpControllerDashboardComponent} from './pool-pump-controller/pump-controller-dashboard/pump-controller-dashboard.component';
-import {SecurityControllerComponent} from './security-controller/security-controller.component';
-import {SecurityDashboardComponent} from './security-controller/security-dashboard/security-dashboard.component';
-import {SecurityControlsComponent} from './security-controller/security-controls/security-controls.component';
+import { OptionsComponent } from './pool-pump-controller/options/options.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { PumpControllerDashboardComponent } from './pool-pump-controller/pump-controller-dashboard/pump-controller-dashboard.component';
+import { SecurityControllerComponent } from './security-controller/security-controller.component';
+import { SecurityBreachedHandlerComponent } from './security-controller/security-breached-handler/security-breached-handler.component';
+import { SecurityDashboardComponent } from './security-controller/security-dashboard/security-dashboard.component';
+import { SecurityControlsComponent } from './security-controller/security-controls/security-controls.component';
 
 const routes: Route[] = [
   {path: 'control-hub-frontend', component: HomeComponent},
@@ -34,6 +35,7 @@ const routes: Route[] = [
     OptionsComponent,
     PumpControllerDashboardComponent,
     SecurityControllerComponent,
+    SecurityBreachedHandlerComponent,
     SecurityDashboardComponent,
     SecurityControlsComponent
   ],
