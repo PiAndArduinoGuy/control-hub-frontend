@@ -14,7 +14,6 @@ import {PumpControllerDashboardComponent} from './pool-pump-controller/pump-cont
 import {SecurityControllerComponent} from './security-controller/security-controller.component';
 import {SecurityDashboardComponent} from './security-controller/security-dashboard/security-dashboard.component';
 import {SecurityControlsComponent} from './security-controller/security-controls/security-controls.component';
-import {SecurityControlsOutputComponent} from './security-controller/security-controls-output/security-controls-output.component';
 
 const routes: Route[] = [
   {path: 'control-hub-frontend', component: HomeComponent},
@@ -36,8 +35,7 @@ const routes: Route[] = [
     PumpControllerDashboardComponent,
     SecurityControllerComponent,
     SecurityDashboardComponent,
-    SecurityControlsComponent,
-    SecurityControlsOutputComponent
+    SecurityControlsComponent
   ],
   imports: [
     BrowserModule,

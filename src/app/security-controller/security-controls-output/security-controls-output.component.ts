@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-security-controls-output',
@@ -6,9 +6,6 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./security-controls-output.component.scss']
 })
 export class SecurityControlsOutputComponent implements OnInit {
-
-  @Input() base64EncodedImage;
-  @Input() zalandoProblemDetail;
 
   constructor() { }
 

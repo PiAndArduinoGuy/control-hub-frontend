@@ -12,8 +12,8 @@ export class SecurityControlsComponent implements OnInit {
   base64JpegEncodedImage = null;
   zalandoProblem: { title: string, status: number, detail: string } = null;
 
-  @Output() securityConfigUpdated = new EventEmitter<{ securityState: string, securityStatus: string }>();
-  @Output() securityControlsOutputUpdate = new EventEmitter<{ outputType: string, output: string }>();
+  @Output() securityArmed = new EventEmitter<{ securityState: string, securityStatus: string }>();
+  @Output() securitySilenced = new EventEmitter<{ securityState: string, securityStatus: string }>();
 
   constructor(private securityMicroserviceBackendRequestsService: SecurityMicroserviceBackendRequestsService) {
   }
@@ -26,11 +26,10 @@ export class SecurityControlsComponent implements OnInit {
       response => {
         this.zalandoProblem = null;
         console.log('Alarm armed, received updated security config.');
-        this.securityConfigUpdated.emit(response);
+        this.securityArmed.emit(response);
       },
       error => {
         this.zalandoProblem = error.error;
-        this.securityControlsOutputUpdate.emit({outputType: 'zalandoProblem', output: error.error.detail});
         console.log(this.zalandoProblem);
       }
     );
@@ -45,7 +44,6 @@ export class SecurityControlsComponent implements OnInit {
       },
       error => {
         this.zalandoProblem = error.error;
-        this.securityControlsOutputUpdate.emit({outputType: 'zalandoProblem', output: error.error.detail});
         console.log(error);
         console.log(this.zalandoProblem);
       }
@@ -57,11 +55,10 @@ export class SecurityControlsComponent implements OnInit {
       response => {
         this.zalandoProblem = null;
         console.log('Alarm silenced, received updated security config.');
-        this.securityConfigUpdated.emit(response);
+        this.securitySilenced.emit(response);
       },
       error => {
         this.zalandoProblem = error.error;
-        this.securityControlsOutputUpdate.emit({outputType: 'zalandoProblem', output: error.error.detail});
         console.log(this.zalandoProblem);
       }
     );
@@ -72,11 +69,10 @@ export class SecurityControlsComponent implements OnInit {
       response => {
         this.zalandoProblem = null;
         console.log('Alarm disarmed, received updated security config.');
-        this.securityConfigUpdated.emit(response);
+        this.securitySilenced.emit(response);
       },
       error => {
         this.zalandoProblem = error.error;
-        this.securityControlsOutputUpdate.emit({outputType: 'zalandoProblem', output: error.error.detail});
         console.log(this.zalandoProblem);
       }
     );

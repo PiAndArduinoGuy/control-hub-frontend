@@ -10,8 +10,6 @@ import {interval} from 'rxjs';
 export class SecurityControllerComponent implements OnInit {
   securityBreached = false;
   securityConfig: { securityState: string, securityStatus: string };
-  zalandoProblemDetail: string;
-  newAnnotatedImage: string;
 
   constructor(private securityMicroserviceBackendRequestsService: SecurityMicroserviceBackendRequestsService) {
   }
@@ -33,21 +31,13 @@ export class SecurityControllerComponent implements OnInit {
     );
   }
 
-  onSecurityConfigUpdated(securityConfig: { securityState: string; securityStatus: string }) {
-    console.log('Security config updated. Reacting to event.');
+  onSecurityArmed(securityConfig: { securityState: string, securityStatus: string }) {
+    console.log('Security was armed. Will update security-dashboard component. The security config is not set to - securityState: ' + securityConfig.securityState + ' securityStatus: ' + securityConfig.securityStatus);
     this.securityConfig = securityConfig;
   }
 
-  onSecurityControlsOutputUpdate(securityControlsOutput: { outputType: string, output: string }) {
-    if (securityControlsOutput.outputType === 'zalandoProblem') {
-      this.zalandoProblemDetail = securityControlsOutput.output;
-      this.newAnnotatedImage = null;
-    } else if (securityControlsOutput.outputType === 'newAnnotatedImage'){
-      this.newAnnotatedImage = 'data:image/jpeg;base64,' + securityControlsOutput.output;
-      this.zalandoProblemDetail = null;
-    } else if (securityControlsOutput.outputType === 'successArmDisarmSilenceRequest'){
-      this.newAnnotatedImage = null;
-      this.zalandoProblemDetail = null;
-    }
+  onAlarmSilenced(securityConfig: { securityState: string, securityStatus: string }) {
+    this.securityConfig = securityConfig;
   }
+
 }
