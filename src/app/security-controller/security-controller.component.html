@@ -3,5 +3,8 @@
 <app-security-dashboard [securityState]="securityConfig.securityState"
                         [securityStatus]="securityConfig.securityStatus"></app-security-dashboard>
 
-<app-security-controls (securityArmed)="onSecurityArmed($event)"
-                       (securitySilenced)="onAlarmSilenced($event)"></app-security-controls>
+<app-security-controls (securityConfigUpdated)="onSecurityConfigUpdated($event)"
+                       (securityControlsOutputUpdate)="onSecurityControlsOutputUpdate($event)"></app-security-controls>
+
+<app-security-controls-output [zalandoProblemDetail]="zalandoProblemDetail"
+                              [base64EncodedImage]="newAnnotatedImage"></app-security-controls-output>

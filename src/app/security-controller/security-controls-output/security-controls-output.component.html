@@ -1,1 +1,17 @@
-<p>security-controls-output works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="d-flex justify-content-center">
+      <img [src]="base64EncodedImage">
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="zalandoProblemDetail !=null">
+  <div class="col-12">
+    <div class="d-flex justify-content-center">
+      <div class="alert alert-light">
+        <h1>An error occurred.</h1>
+        <p> {{zalandoProblemDetail}} </p>
+      </div>
+    </div>
+  </div>
+</div>
