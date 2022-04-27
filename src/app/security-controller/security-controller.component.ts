@@ -31,13 +31,8 @@ export class SecurityControllerComponent implements OnInit {
     );
   }
 
-  onSecurityArmed(securityConfig: { securityState: string, securityStatus: string }) {
-    console.log('Security was armed. Will update security-dashboard component. The security config is not set to - securityState: ' + securityConfig.securityState + ' securityStatus: ' + securityConfig.securityStatus);
+  onSecurityConfigUpdate(securityConfig: {securityState: string; securityStatus: string}) {
+    console.log('Security config updated. Acting on emitted event.');
     this.securityConfig = securityConfig;
   }
-
-  onAlarmSilenced(securityConfig: { securityState: string, securityStatus: string }) {
-    this.securityConfig = securityConfig;
-  }
-
 }

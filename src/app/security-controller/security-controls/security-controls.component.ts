@@ -12,8 +12,7 @@ export class SecurityControlsComponent implements OnInit {
   base64JpegEncodedImage = null;
   zalandoProblem: { title: string, status: number, detail: string } = null;
 
-  @Output() securityArmed = new EventEmitter<{ securityState: string, securityStatus: string }>();
-  @Output() securitySilenced = new EventEmitter<{ securityState: string, securityStatus: string }>();
+  @Output() securityConfigUpdated = new EventEmitter<{ securityState: string, securityStatus: string }>();
 
   constructor(private securityMicroserviceBackendRequestsService: SecurityMicroserviceBackendRequestsService) {
   }
@@ -26,7 +25,7 @@ export class SecurityControlsComponent implements OnInit {
     this.securityMicroserviceBackendRequestsService.armAlarm().subscribe(
       response => {
         console.log('Alarm armed, received updated security config.');
-        this.securityArmed.emit(response);
+        this.securityConfigUpdated.emit(response);
       },
       error => {
         this.zalandoProblem = error.error;
@@ -55,7 +54,7 @@ export class SecurityControlsComponent implements OnInit {
     this.securityMicroserviceBackendRequestsService.silenceAlarm().subscribe(
       response => {
         console.log('Alarm silenced, received updated security config.');
-        this.securitySilenced.emit(response);
+        this.securityConfigUpdated.emit(response);
       },
       error => {
         this.zalandoProblem = error.error;
@@ -69,7 +68,7 @@ export class SecurityControlsComponent implements OnInit {
     this.securityMicroserviceBackendRequestsService.disarmAlarm().subscribe(
       response => {
         console.log('Alarm disarmed, received updated security config.');
-        this.securitySilenced.emit(response);
+        this.securityConfigUpdated.emit(response);
       },
       error => {
         this.zalandoProblem = error.error;

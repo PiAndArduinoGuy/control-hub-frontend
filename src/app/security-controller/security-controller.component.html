@@ -1,7 +1,12 @@
 <h1>Security Controller</h1>
 <hr>
-<app-security-dashboard [securityState]="securityConfig.securityState"
-                        [securityStatus]="securityConfig.securityStatus"></app-security-dashboard>
+<div class="row">
+  <div class="col-12">
+    <div class="d-flex justify-content-center">
+      <app-security-dashboard [securityState]="securityConfig.securityState"
+                              [securityStatus]="securityConfig.securityStatus"></app-security-dashboard>
+    </div>
+  </div>
+</div>
 
-<app-security-controls (securityArmed)="onSecurityArmed($event)"
-                       (securitySilenced)="onAlarmSilenced($event)"></app-security-controls>
+<app-security-controls (securityConfigUpdated)="onSecurityConfigUpdate($event)"></app-security-controls>
