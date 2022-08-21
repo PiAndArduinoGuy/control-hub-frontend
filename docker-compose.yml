@@ -1,0 +1,10 @@
+services:
+  control-hub-frontend:
+    image: piandarduinoguy/control-hub-frontend:20220813
+    networks:
+      - security-network
+networks:
+  security-network:
+    external: true
+    name: security-network
+    driver: overlay
