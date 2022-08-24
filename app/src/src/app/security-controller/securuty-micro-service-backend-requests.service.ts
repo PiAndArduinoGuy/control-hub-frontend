@@ -3,30 +3,30 @@ import {Injectable} from '@angular/core';
 
 @Injectable({providedIn: 'root'})
 export class SecurityMicroserviceBackendRequestsService {
-  private baseUrl = window['baseUrl'];
+  private securityMicroServiceBaseUrl = window['securityMicroServiceBaseUrl'];
 
   constructor(private httpClient: HttpClient) {
 
   }
 
   getBase64EncodedImage() {
-    return this.httpClient.get<{ base64EncodedImage: string }>(this.baseUrl + '/annotated-image');
+    return this.httpClient.get<{ base64EncodedImage: string }>(this.securityMicroServiceBaseUrl + '/annotated-image');
   }
 
   getSecurityConfig() {
-    return this.httpClient.get<{ securityState: string, securityStatus: string }>(this.baseUrl + '/security-config');
+    return this.httpClient.get<{ securityState: string, securityStatus: string }>(this.securityMicroServiceBaseUrl + '/security-config');
   }
 
   silenceAlarm() {
-    return this.httpClient.put<{ securityState: string, securityStatus: string }>(this.baseUrl + '/silence-alarm', null);
+    return this.httpClient.put<{ securityState: string, securityStatus: string }>(this.securityMicroServiceBaseUrl + '/silence-alarm', null);
   }
 
   armAlarm() {
-    return this.httpClient.put<{ securityState: string, securityStatus: string }>(this.baseUrl + '/arm-alarm', null);
+    return this.httpClient.put<{ securityState: string, securityStatus: string }>(this.securityMicroServiceBaseUrl + '/arm-alarm', null);
   }
 
   disarmAlarm() {
-    return this.httpClient.put<{ securityState: string, securityStatus: string }>(this.baseUrl + '/disarm-alarm', null);
+    return this.httpClient.put<{ securityState: string, securityStatus: string }>(this.securityMicroServiceBaseUrl + '/disarm-alarm', null);
   }
 
 }
