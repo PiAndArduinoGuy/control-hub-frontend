@@ -1,6 +1,21 @@
 services:
+  security-micro-service:
+    image: piandarduinoguy/security-micro-service
+    ports:
+      - 8082:8082
+    volumes:
+      - security-micro-service:/security-micro-service/resources
+    networks:
+      - security-network
+  rabbitmq:
+    image: rabbitmq:3.8.14-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - security-network
   control-hub-frontend:
-    image: piandarduinoguy/control-hub-frontend:20220813
+    image: piandarduinoguy/control-hub-frontend
     ports:
       - 8080:8080
     environment:
